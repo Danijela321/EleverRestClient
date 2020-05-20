@@ -34,35 +34,38 @@ public class TestClient {
 		System.out.println(response.getHeaders().toString());
 		System.out.println(response.getStatus());
 		System.out.println(response.readEntity(String.class));
-
 		response.close();
 
-//		Elever nyElever = new Elever();
-//		nyElever.setFirstName("Eva");
-//		nyElever.setSurname("Adamsson");
-//		nyElever.setSkola("Humanus");
-//		nyElever.setKlass(1);
+		Elever nyElever = new Elever();
+		nyElever.setFirstName("Eva");
+		nyElever.setSurname("Adamsson");
+		nyElever.setSkola("Humanus");
+		nyElever.setKlass(1);
 //
-//		 //Entity nyEleverEntity = Entity.entity(nyElever, "application/XML");
-//		Entity nyEleverEntity = Entity.entity(nyElever, "application/JSON");
-//		response = client.target("http://localhost:8080/EleverManagement/webservice/elever").request().buildPost(nyEleverEntity).invoke();
-//		System.out.println();
-//		 System.out.println(response.readEntity(Elever.class).getId());
-//		//System.out.println(response.readEntity(String.class));
+//		Entity nyEleverEntity = Entity.entity(nyElever, "application/XML");
+		Entity nyEleverEntity = Entity.entity(nyElever, "application/JSON");
+		response = client.target("http://localhost:8080/EleverManagement/webservice/elever").request().buildPost(nyEleverEntity).invoke();
+		System.out.println("Om man skapar en ny elev får man code status: "+ response.getStatus());
+		if(response.getStatus()==201) {
+			//får man ProcessingException
+			//System.out.println(response.readEntity(Elever.class).getId());
+			//får code status 201
+			System.out.println(response.readEntity(String.class));
+		}
+
+		response.close();
 //
-//		response.close();
-//
-//		// får alla elever
-//		response = client.target("http://localhost:8080/EleverManagement/webservice/elever").request("application/XML").buildGet().invoke();
-//		System.out.println();
-//		// System.out.println(response.readEntity(String.class));
-//		List<Elever> eleverAlla = response.readEntity(new GenericType<List<Elever>>() {
-//		});
-//
-//		for (Elever el : eleverAlla) {
-//			System.out.println(el);
-//		}
-//		response.close();
+//		// skriv ut alla elever
+		response = client.target("http://localhost:8080/EleverManagement/webservice/elever").request("application/XML").buildGet().invoke();
+		System.out.println();
+		// System.out.println(response.readEntity(String.class));
+		List<Elever> eleverAlla = response.readEntity(new GenericType<List<Elever>>() {
+		});
+
+		for (Elever el : eleverAlla) {
+			System.out.println(el);
+		}
+		response.close();
 	}
 
 }
