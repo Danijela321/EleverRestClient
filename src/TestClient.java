@@ -25,7 +25,7 @@ public class TestClient {
 		Client client = ClientBuilder.newClient();
 		// obs.firts letar efter med efternamn och sen med id
 		// man letar efter elever som heter Lundqvist och har id=4
-		Response response = client.target("http://localhost:8080/EleverManagement/webservice/elever/Lundqvist/4")
+		Response response = client.target("http://localhost:8080/EleverManagement/webservice/elever/Andersson/5")
 				.request("application/JSON").buildGet().invoke();
 
 		// Elever elever = response.readEntity(Elever.class);
