@@ -32,12 +32,13 @@ public class TestClient {
 		// System.out.println(elever);
 	
 		System.out.println(response.getHeaders().toString());
-		System.out.println(response.getStatus());
-		System.out.println(response.readEntity(String.class));
+		System.out.println("Status code: "+response.getStatus());
+		System.out.println("Resultat fran databas: "+response.readEntity(String.class));
+		System.out.println();
 		response.close();
 
 		Elever nyElever = new Elever();
-		nyElever.setFirstName("Anna");
+		nyElever.setFirstName("Anna15");
 		nyElever.setSurname("Svensson");
 		nyElever.setSkola("Yrgo");
 		nyElever.setKlass(1);
