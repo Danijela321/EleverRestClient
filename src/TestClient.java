@@ -24,8 +24,9 @@ public class TestClient {
 
 		Client client = ClientBuilder.newClient();
 		// obs.firts letar efter med efternamn och sen med id
-		// man letar efter elever som heter Lundqvist och har id=4
-		Response response = client.target("http://localhost:8080/EleverManagement/webservice/elever/Andersson/507")
+		// man letar efter elever som heter Lundqvist och har id=507
+		//testa med Lundqvist 57 för att få status code 404
+		Response response = client.target("http://localhost:8080/EleverManagement/webservice/elever/Lundqvist/507")
 				.request("application/JSON").buildGet().invoke();
 
 		// Elever elever = response.readEntity(Elever.class);
@@ -37,8 +38,9 @@ public class TestClient {
 		System.out.println();
 		response.close();
 
+		// skapar en ny elev och skriva ut
 		Elever nyElever = new Elever();
-		nyElever.setFirstName("Anna15");
+		nyElever.setFirstName("Anna20");
 		nyElever.setSurname("Svensson");
 		nyElever.setSkola("Yrgo");
 		nyElever.setKlass(1);
