@@ -29,18 +29,21 @@ public class TestClient {
 		Response response = client.target("http://localhost:8080/EleverManagement/webservice/elever/Lundqvist/507")
 				.request("application/JSON").buildGet().invoke();
 
-		// Elever elever = response.readEntity(Elever.class);
-		// System.out.println(elever);
 	
 		System.out.println(response.getHeaders().toString());
 		System.out.println("Status code: "+response.getStatus());
-		System.out.println("Resultat fran databas: "+response.readEntity(String.class));
+		if(response.getStatus()==200) {
+			System.out.println("Resultat fran databas: "+response.readEntity(String.class));
+		}		
+		else if(response.getStatus()==404) {
+			System.out.println("Elever finns inte i databasen.");
+		}
 		System.out.println();
 		response.close();
 
 		// skapar en ny elev och skriva ut
 		Elever nyElever = new Elever();
-		nyElever.setFirstName("Anna20");
+		nyElever.setFirstName("Anna21");
 		nyElever.setSurname("Svensson");
 		nyElever.setSkola("Yrgo");
 		nyElever.setKlass(1);
