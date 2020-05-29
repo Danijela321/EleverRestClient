@@ -27,12 +27,16 @@ public class TestClient {
 		// man letar efter elever som heter Lundqvist och har id=507
 		// testa med Lundqvist 57 för att få status code 404
 		// status code 200- elev finns i databas
+		
+		//hämta elever med bara id
+		//Response response = client.target("http://localhost:8080/EleverManagement/webservice/elever/xxx/507")
+		//hämta elever med efternamn och id
 		Response response = client.target("http://localhost:8080/EleverManagement/webservice/elever/Lundqvist/507")
 				.request("application/JSON").buildGet().invoke();
 		// om man vill ha respons i xml format
 		// .request("application/xml").buildGet().invoke();
 
-//skriv ut Headers, status code och resultat från databas
+		//skriv ut Headers, status code och resultat från databas
 		System.out.println(response.getHeaders().toString());
 		System.out.println("Status code: " + response.getStatus());
 		if (response.getStatus() == 200) {
@@ -45,7 +49,7 @@ public class TestClient {
 
 		// skapar en ny elev och skriva ut
 		Elever nyElever = new Elever();
-		nyElever.setFirstName("Anna22");
+		nyElever.setFirstName("Anna");
 		nyElever.setSurname("Svensson");
 		nyElever.setSkola("Yrgo");
 		nyElever.setKlass(1);
@@ -56,14 +60,17 @@ public class TestClient {
 				.buildPost(nyEleverEntity).invoke();
 
 		// skriver ut status kod nar programmet skapar en ny elev
-		System.out.println("Om man skapar en ny elev får man code status: " + response.getStatus());
+	//	System.out.println("Om man skapar en ny elev får man code status: " + response.getStatus());
 		if (response.getStatus() == 201) {
 			// får man ProcessingException
 			// System.out.println(response.readEntity(Elever.class).getId());
 			// får code status 201
-			System.out.println(response.readEntity(String.class));
-		}
+			System.out.println("Om man skapar en ny elev får man code status: " + response.getStatus());
+		//	System.out.println(response.readEntity(String.class));
+		} else if (response.getStatus() == 504) {
+			System.out.println("Fel händer! Status code: " + response.getStatus());
 
+		}
 		response.close();
 		//
 //		// skriv ut alla elever
@@ -80,8 +87,7 @@ public class TestClient {
 		response.close();
 
 		// delete elev
-
-		response = client.target("http://localhost:8080/EleverManagement/webservice/elever/834").request().buildDelete()
+		response = client.target("http://localhost:8080/EleverManagement/webservice/elever/1067").request().buildDelete()
 				.invoke();
 		System.out.println("\nRadera status ar " + response.getStatus());
 		if (response.getStatus() == 404) {
@@ -89,7 +95,6 @@ public class TestClient {
 		} else if (response.getStatus() == 204) {
 			System.out.println("Elev har blivit borttagen.");
 		}
-
 		response.close();
 
 		// skriv ut alla elever
@@ -107,7 +112,7 @@ public class TestClient {
 
 		// uppdate elevs info,efternamn och ar
 		Elever updatedElever = new Elever();
-		updatedElever.setSurname("ny efternamn5");
+		updatedElever.setSurname("ny efternamn50");
 		updatedElever.setKlass(2);
 
 		Entity eEntity = Entity.entity(updatedElever, "application/JSON");
