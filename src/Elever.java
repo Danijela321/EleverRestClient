@@ -2,8 +2,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Elever {
-	// @Id
-	// @GeneratedValue(strategy = GenerationType.AUTO)
+	
 	private int id;
 	private String firstName;
 	private String surname;
@@ -15,10 +14,10 @@ public class Elever {
 	/**
 	 * @author Danijela
 	 * 
-	 * @param firstName
-	 * @param surname
-	 * @param skola
-	 * @param klass
+	 * @param firstName  fornamn
+	 * @param surname	efternamn
+	 * @param skola 	skola
+	 * @param klass 	klass
 	 */
 //	public Elever(String firstName, String surname, String skola, int klass) {
 //		this.firstName = firstName;
@@ -37,7 +36,7 @@ public class Elever {
 
 	/**
 	 * 
-	 * @return
+	 * @return id
 	 */
 	public int getId() {
 		return id;
@@ -45,7 +44,7 @@ public class Elever {
 
 	/**
 	 * 
-	 * @param id
+	 * @param id id
 	 */
 
 	public void setId(int id) {
@@ -54,7 +53,7 @@ public class Elever {
 
 	/**
 	 * 
-	 * @return
+	 * @return fornamn
 	 */
 	public String getFirstName() {
 		return firstName;
@@ -62,7 +61,7 @@ public class Elever {
 
 	/**
 	 * 
-	 * @param firstName
+	 * @param firstName efternamn
 	 */
 
 	public void setFirstName(String firstName) {
@@ -71,7 +70,7 @@ public class Elever {
 
 	/**
 	 * 
-	 * @return
+	 * @return efternamn
 	 */
 	public String getSurname() {
 		return surname;
@@ -79,7 +78,7 @@ public class Elever {
 
 	/**
 	 * 
-	 * @param surname
+	 * @param surname efternamn
 	 */
 
 	public void setSurname(String surname) {
@@ -88,7 +87,7 @@ public class Elever {
 
 	/**
 	 * 
-	 * @return
+	 * @return skola
 	 */
 
 	public String getSkola() {
@@ -97,7 +96,7 @@ public class Elever {
 
 	/**
 	 * 
-	 * @param skola
+	 * @param skola skola
 	 */
 
 	public void setSkola(String skola) {
@@ -106,7 +105,7 @@ public class Elever {
 
 	/**
 	 * 
-	 * @return
+	 * @return klass 
 	 */
 
 	public int getKlass() {
@@ -115,7 +114,7 @@ public class Elever {
 
 	/**
 	 * 
-	 * @param klass
+	 * @param klass klass
 	 */
 	public void setKlass(int klass) {
 		this.klass = klass;

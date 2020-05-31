@@ -87,7 +87,7 @@ public class TestClient {
 		response.close();
 
 		// delete elev
-		response = client.target("http://localhost:8080/EleverManagement/webservice/elever/1067").request().buildDelete()
+		response = client.target("http://localhost:8080/EleverManagement/webservice/elever/1104").request().buildDelete()
 				.invoke();
 		System.out.println("\nRadera status ar " + response.getStatus());
 		if (response.getStatus() == 404) {
